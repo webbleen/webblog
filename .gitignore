@@ -23,5 +23,6 @@
 hs_err_pid*
 
 .idea/
+src/main/resources/static/
 target/
 .DS_Store
