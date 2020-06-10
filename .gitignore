@@ -23,6 +23,8 @@
 hs_err_pid*
 
 .idea/
+src/main/resources/.gitignore
 src/main/resources/static/
+src/main/resources/templates/
 target/
 .DS_Store
