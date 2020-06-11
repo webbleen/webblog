@@ -1,7 +1,5 @@
 package com.webbleen.webblog.entity;
 
-import org.apache.ibatis.type.Alias;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +19,8 @@ public class User {
     private String phone;
     private String gender;
     private String trueName;
-    private String birthday;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date birthday;
     private String email;
     private String personalBrief;
     private String avatarImgUrl;
@@ -92,11 +91,11 @@ public class User {
         this.trueName = trueName;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
