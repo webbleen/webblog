@@ -1,5 +1,7 @@
 package com.webbleen.webblog.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,11 +21,16 @@ public class Blog {
     @GeneratedValue
     private Long id;
 
+    @NotBlank(message = "标题不能为空")
     private String title;
+    @NotBlank(message = "内容不能为空")
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
     private String content;
+    @NotBlank(message = "首图不能为空")
     private String firstPicture;
     private String flag;
-    private Integer views;
+    private Integer views = 0;
     private boolean appreciation;
     private boolean shareStatement;
     private boolean commentable;
@@ -45,6 +52,9 @@ public class Blog {
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
+
+    @Transient
+    private String tagIds;
 
     public Blog() {
     }
@@ -183,6 +193,14 @@ public class Blog {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
     }
 
     @Override
