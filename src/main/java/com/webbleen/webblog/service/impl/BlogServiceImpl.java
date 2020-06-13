@@ -5,6 +5,7 @@ import com.webbleen.webblog.dao.BlogRepository;
 import com.webbleen.webblog.entity.Blog;
 import com.webbleen.webblog.entity.Type;
 import com.webbleen.webblog.service.BlogService;
+import com.webbleen.webblog.utils.MyBeanUtils;
 import com.webbleen.webblog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +81,8 @@ public class BlogServiceImpl implements BlogService {
         if (b == null) {
             throw new NotFoundException("该博客不存在");
         }
-        BeanUtils.copyProperties(blog, b);
+        BeanUtils.copyProperties(blog, b, MyBeanUtils.getNullPropertyNames(blog));
+        b.setUpdateTime(new Date());
         return blogRepository.save(b);
     }
 

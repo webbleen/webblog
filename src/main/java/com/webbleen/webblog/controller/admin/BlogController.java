@@ -83,8 +83,8 @@ public class BlogController {
         blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getType(blog.getType().getId()));
         blog.setTags(tagService.listTag(blog.getTagIds()));
-        // TODO:
-        Blog b = blogService.saveBlog(blog);
+
+        Blog b = blog.getId() == null ? blogService.saveBlog(blog) : blogService.updateBlog(blog.getId(), blog);
         if (b == null) {
             attributes.addFlashAttribute("message", "新增失败");
         } else {
