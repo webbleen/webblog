@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface TypeService {
 
-    Type save(Type type);
-
     Type getType(Long id);
 
     Type getTypeByName(String name);
@@ -17,6 +15,10 @@ public interface TypeService {
     Page<Type> listType(Pageable pageable);
 
     List<Type> listType();
+
+    List<Type> listTypeTop(Integer size);
+
+    Type save(Type type);
 
     Type updateType(Long id, Type type);
 

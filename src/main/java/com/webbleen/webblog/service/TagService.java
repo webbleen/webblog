@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface TagService {
 
-    Tag save(Tag tag);
-
     Tag getTag(Long id);
 
     Tag getTagByName(String name);
@@ -19,6 +17,10 @@ public interface TagService {
     List<Tag> listTag();
 
     List<Tag> listTag(String ids);
+
+    List<Tag> listTagTop(Integer size);
+
+    Tag save(Tag tag);
 
     Tag updateTag(Long id, Tag tag);
 

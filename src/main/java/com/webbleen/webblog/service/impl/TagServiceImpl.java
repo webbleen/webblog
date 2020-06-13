@@ -8,7 +8,9 @@ import com.webbleen.webblog.service.TagService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,31 +31,21 @@ public class TagServiceImpl implements TagService {
     @Autowired
     TagRepository tagRepository;
 
-    @Transactional
-    @Override
-    public Tag save(Tag tag) {
-        return tagRepository.save(tag);
-    }
-
-    @Transactional
     @Override
     public Tag getTag(Long id) {
         return tagRepository.findById(id).get();
     }
 
-    @Transactional
     @Override
     public Tag getTagByName(String name) {
         return tagRepository.findByName(name);
     }
 
-    @Transactional
     @Override
     public Page<Tag> listTag(Pageable pageable) {
         return tagRepository.findAll(pageable);
     }
 
-    @Transactional
     @Override
     public List<Tag> listTag() {
         return tagRepository.findAll();
@@ -62,6 +54,12 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> listTag(String ids) {
         return tagRepository.findAllById(convertToList(ids));
+    }
+
+    @Override
+    public List<Tag> listTagTop(Integer size) {
+        Pageable pageable = PageRequest.of(0, size, Sort.by(Sort.Direction.DESC, "blogs.size"));
+        return tagRepository.findTop(pageable);
     }
 
     private List<Long> convertToList(String ids) {
@@ -75,6 +73,11 @@ public class TagServiceImpl implements TagService {
         return list;
     }
 
+    @Transactional
+    @Override
+    public Tag save(Tag tag) {
+        return tagRepository.save(tag);
+    }
 
     @Transactional
     @Override
