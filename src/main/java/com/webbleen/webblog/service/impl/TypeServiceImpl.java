@@ -12,7 +12,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+
+/**
+ * @author ：webbleen
+ * @date ：Created in 2020-06-13 10:54
+ * @description：
+ */
 
 @Service
 public class TypeServiceImpl implements TypeService {
@@ -44,14 +51,18 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.findAll(pageable);
     }
 
+    @Override
+    public List<Type> listType() {
+        return typeRepository.findAll();
+    }
+
     @Transactional
     @Override
     public Type updateType(Long id, Type type) {
-        Optional<Type> tmp = typeRepository.findById(id);
-        if (tmp.get() == null) {
+        Type t = typeRepository.findById(id).get();
+        if (t == null) {
             throw new NotFoundException("不存在该类型");
         }
-        Type t = tmp.get();
         BeanUtils.copyProperties(type, t);
         return typeRepository.save(t);
     }

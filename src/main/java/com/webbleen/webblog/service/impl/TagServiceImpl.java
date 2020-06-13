@@ -14,6 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * @author ：webbleen
+ * @date ：Created in 2020-06-13 10:54
+ * @description：
+ */
+
 @Service
 public class TagServiceImpl implements TagService {
 
@@ -48,11 +54,10 @@ public class TagServiceImpl implements TagService {
     @Transactional
     @Override
     public Tag updateTag(Long id, Tag tag) {
-        Optional<Tag> tmp = tagRepository.findById(id);
-        if (tmp.get() == null) {
+        Tag t = tagRepository.findById(id).get();
+        if (t == null) {
             throw new NotFoundException("不存在该类型");
         }
-        Tag t = tmp.get();
         BeanUtils.copyProperties(tag, t);
         return tagRepository.save(t);
     }
