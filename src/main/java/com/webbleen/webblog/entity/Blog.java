@@ -29,6 +29,8 @@ public class Blog {
     private String content;
     @NotBlank(message = "首图不能为空")
     private String firstPicture;
+    @NotBlank(message = "描述不能为空")
+    private String description;
     private String flag;
     private Integer views = 0;
     private boolean appreciation;
@@ -89,6 +91,14 @@ public class Blog {
 
     public void setFirstPicture(String firstPicture) {
         this.firstPicture = firstPicture;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getFlag() {
@@ -232,6 +242,7 @@ public class Blog {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", firstPicture='" + firstPicture + '\'' +
+                ", description='" + description + '\'' +
                 ", flag='" + flag + '\'' +
                 ", views=" + views +
                 ", appreciation=" + appreciation +
