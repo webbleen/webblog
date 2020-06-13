@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author ：webbleen
@@ -33,7 +35,7 @@ public class IndexController {
     private TagService tagService;
 
     @GetMapping("/")
-    public String index(@PageableDefault(size = 3, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
+    public String index(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, BlogQuery blog, Model model) {
 
         model.addAttribute("page", blogService.listBlog(pageable));
         model.addAttribute("types", typeService.listTypeTop(6));//TODO:
@@ -42,7 +44,14 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/blog")
+    @PostMapping("/search")
+    public String search(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable, @RequestParam String query, BlogQuery blog, Model model) {
+        model.addAttribute("page", blogService.listBlog(pageable, "%"+query+"%"));
+        model.addAttribute("query", query);
+        return "search";
+    }
+
+    @GetMapping("/blog/{id}")
     public String blog() {
         return "blog";
     }
