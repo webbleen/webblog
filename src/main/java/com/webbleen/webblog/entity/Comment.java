@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author ：webbleen
+ * @date ：Created in 2020-06-13 10:54
+ * @description：
+ */
+
 @Entity
 @Table(name = "w_comment")
 public class Comment {

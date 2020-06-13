@@ -10,6 +10,12 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author ：webbleen
+ * @date ：Created in 2020-06-13 10:54
+ * @description：
+ */
+
 @Aspect
 @Component
 public class LogsAspect {

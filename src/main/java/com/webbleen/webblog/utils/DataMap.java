@@ -4,6 +4,12 @@ import com.webbleen.webblog.constant.CodeType;
 
 import java.util.LinkedHashMap;
 
+/**
+ * @author ：webbleen
+ * @date ：Created in 2020-06-13 10:54
+ * @description：
+ */
+
 public class DataMap<T> extends LinkedHashMap {
 
     private Integer code;

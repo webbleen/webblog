@@ -3,6 +3,12 @@ package com.webbleen.webblog.utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author ：webbleen
+ * @date ：Created in 2020-06-13 10:54
+ * @description：
+ */
+
 public class MD5Utils {
     /**
      * MD5加密类

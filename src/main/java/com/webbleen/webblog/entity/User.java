@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author ：webbleen
+ * @date ：Created in 2020-06-13 10:54
+ * @description：
+ */
+
 @Entity
 @Table(name = "w_user")
 public class User {
@@ -15,15 +21,15 @@ public class User {
 
     private Integer type;
     private String username;
+    private String nickname;
     private String password;
     private String phone;
     private String gender;
-    private String trueName;
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
     private String email;
-    private String personalBrief;
-    private String avatarImgUrl;
+    private String avatar;
+    private String brief;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
@@ -59,6 +65,14 @@ public class User {
         this.username = username;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -83,14 +97,6 @@ public class User {
         this.gender = gender;
     }
 
-    public String getTrueName() {
-        return trueName;
-    }
-
-    public void setTrueName(String trueName) {
-        this.trueName = trueName;
-    }
-
     public Date getBirthday() {
         return birthday;
     }
@@ -107,20 +113,21 @@ public class User {
         this.email = email;
     }
 
-    public String getPersonalBrief() {
-        return personalBrief;
+
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setPersonalBrief(String personalBrief) {
-        this.personalBrief = personalBrief;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getAvatarImgUrl() {
-        return avatarImgUrl;
+    public String getBrief() {
+        return brief;
     }
 
-    public void setAvatarImgUrl(String avatarImgUrl) {
-        this.avatarImgUrl = avatarImgUrl;
+    public void setBrief(String brief) {
+        this.brief = brief;
     }
 
     public Date getCreateTime() {
@@ -153,14 +160,14 @@ public class User {
                 "id=" + id +
                 ", type=" + type +
                 ", username='" + username + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
                 ", gender='" + gender + '\'' +
-                ", trueName='" + trueName + '\'' +
                 ", birthday='" + birthday + '\'' +
                 ", email='" + email + '\'' +
-                ", personalBrief='" + personalBrief + '\'' +
-                ", avatarImgUrl='" + avatarImgUrl + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", brief='" + brief + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

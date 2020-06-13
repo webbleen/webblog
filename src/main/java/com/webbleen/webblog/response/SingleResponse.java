@@ -2,6 +2,12 @@ package com.webbleen.webblog.response;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * @author ：webbleen
+ * @date ：Created in 2020-06-13 10:54
+ * @description：
+ */
+
 public class SingleResponse extends BaseResponse {
 
     public SingleResponse() {
