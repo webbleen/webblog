@@ -5,6 +5,7 @@ import com.webbleen.webblog.dao.BlogRepository;
 import com.webbleen.webblog.entity.Blog;
 import com.webbleen.webblog.entity.Type;
 import com.webbleen.webblog.service.BlogService;
+import com.webbleen.webblog.utils.MarkdownUtils;
 import com.webbleen.webblog.utils.MyBeanUtils;
 import com.webbleen.webblog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
@@ -40,6 +41,19 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlog(Long id) {
         return blogRepository.findById(id).get();
+    }
+
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.findById(id).get();
+        if (blog == null) {
+            throw new NotFoundException("该博客不存在");
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog, b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
     }
 
     @Override
