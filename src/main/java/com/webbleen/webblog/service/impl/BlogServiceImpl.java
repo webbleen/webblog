@@ -19,9 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author ：webbleen
@@ -101,8 +99,23 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public List<Blog> listRecommendBlogTop(Integer size) {
-        Pageable pageable = PageRequest.of(0, size, Sort.by(Sort.Direction.DESC, "updateTime"));
+        Pageable pageable = PageRequest.of(0, size, Sort.by(Sort.Direction.DESC, "updateTime"));//TODO:only recommend
         return blogRepository.findTop(pageable);
+    }
+
+    @Override
+    public LinkedHashMap<String, List<Blog>> archiveBlog() {
+        List<String> years = blogRepository.findGroupYeas();
+        LinkedHashMap<String, List<Blog>> archiveMap = new LinkedHashMap<>();
+        for (String year : years) {
+            archiveMap.put(year, blogRepository.findByYear(year));
+        }
+        return archiveMap;
+    }
+
+    @Override
+    public Long countBlog() {
+        return blogRepository.count();
     }
 
     @Transactional
@@ -110,6 +123,7 @@ public class BlogServiceImpl implements BlogService {
     public Blog saveBlog(Blog blog) {
         if (blog.getId() == null) {
             blog.setCreateTime(new Date());
+            blog.setUpdateTime(new Date());
             blog.setViews(0);
         } else {
             blog.setUpdateTime(new Date());

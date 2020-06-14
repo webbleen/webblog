@@ -5,6 +5,7 @@ import com.webbleen.webblog.vo.BlogQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -28,6 +29,10 @@ public interface BlogService {
     Page<Blog> listBlog(Pageable pageable, Long tagId);
 
     List<Blog> listRecommendBlogTop(Integer size);
+
+    LinkedHashMap<String, List<Blog>> archiveBlog();
+
+    Long countBlog();
 
     Blog saveBlog(Blog blog);
 
