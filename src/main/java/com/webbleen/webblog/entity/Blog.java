@@ -18,7 +18,7 @@ import java.util.List;
 public class Blog {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "标题不能为空")

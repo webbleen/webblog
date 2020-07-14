@@ -17,7 +17,7 @@ import java.util.List;
 public class Tag {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "标签名称不能为空")
